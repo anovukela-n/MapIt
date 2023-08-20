@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your other head elements -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        // Display a pop-up with the error message and then redirect
+        {% if error_message %}
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'An Error Occurred',
+                    text: "{{ error_message }}",
+                    confirmButtonText: 'OK'
+                }).then(function() {
+                    window.location.href = '{% url "table" %}';
+                });
+            };
+        {% endif %}
+    </script>
+</head>
+<body>
+    <!-- Your HTML content -->
+</body>
+</html>

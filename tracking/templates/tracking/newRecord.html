@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracking Data Form</title>
+</head>
+<body>
+    <h2>Submit Tracking Data</h2>
+    <form method="post" action="{% url 'create_record' %}">
+        {% csrf_token %}
+        <label for="vehicleid">Vehicle ID:</label>
+        <input type="text" name="vehicleid" required><br>
+        <br>
+        <label for="timestamp">Timestamp:</label>
+        <input type="datetime-local" name="timestamp" required><br>
+         <br>
+        <label for="coordinate_longitude">Longitude:</label>
+        <input type="number" step="any" name="coordinate_longitude" required><br>
+         <br>
+        <label for="coordinate_latitude">Latitude:</label>
+        <input type="number" step="any" name="coordinate_latitude" required><br>
+         <br>
+        <label for="event_description">Event Description:</label>
+        <textarea name="event_description" required></textarea><br>
+         <br>
+        <label for="speed">Speed:</label>
+        <input type="number" name="speed" required><br>
+         <br>
+        <label for="heading">Heading:</label>
+        <input type="number" name="heading" required><br>
+         <br>
+        <label for="ignitionState">Ignition State:</label>
+        <input type="text" name="ignitionState" required><br>
+         <br>
+        <label for="gps_accuracy">GPS Accuracy:</label>
+        <input type="number" step="any" name="gps_accuracy" required><br>
+         <br>
+        <label for="gps_fix_type">GPS Fix Type:</label>
+        <input type="text" name="gps_fix_type" required><br>
+         <br>
+        <input type="submit" value="Create Record">
+    </form>
+</body>
+</html>

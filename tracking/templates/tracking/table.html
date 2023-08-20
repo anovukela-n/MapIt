@@ -1,0 +1,49 @@
+
+{% load static %} {% block content %}
+<h1>API DATA,<span class='bold'></span></h1>
+
+
+<table id ='apiData 'class='table table-striped table-bordered' >
+    <thead>
+        <tr>
+            <th>id </th>
+            <th>vehicleid</th>
+            <th>timestamp </th>
+            <th>coordinate_longitude</th>
+            <th>coordinate_latitude</th>
+            <th>event_description </th>
+            <th>speed </th>
+            <th>heading </th>
+            <th>ignitionState</th>
+            <th>gps_accuracy</th>
+            <th>gps_fix_type</th>
+
+          
+        </tr>
+    </thead>
+
+{% for x in records %}
+  <tr>
+  
+  <td><a href="update/{{ x.id }}">{{ x.id }}</a></td>
+  <td contenteditable>{{ x.coordinate_longitude}}</td>
+  <td> {{ x.coordinate_latitude}} </td>
+  <td>{{ x.vehicleid }}</td>
+  <td>{{ x.timestamp }}</td>
+  <td>{{ x.event_description }}</td>
+  <td>{{ x.heading }}</td>
+  <td>{{ x.ignitionState}}</td>
+  <td>{{ x.gps_accuracy }}</td>
+  <td>{{ x.gps_fix_type}}</td>
+  <td><td><a href="delete/{{ x.id }}">delete</a>
+
+  
+
+
+  </tr>
+{% endfor %}
+</table>
+{% endblock content %}
+
+
+
