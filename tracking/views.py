@@ -7,6 +7,11 @@ from django.http import JsonResponse
 from .models import TrackingData
 import pandas as pd
 
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
+#from api_package.serializers import ApiSerializer
+from django.template import loader
+
 def home(request):
     return HttpResponse("Hello, Django!")
 
