@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracking App</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            padding: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vehicle Tracking Data</h1>
+    <ul>
+        {% for record in records %}
+        <li>ID: {{ record.id }}</li>
+        <li>Vehicle ID: {{ record.vehicleid }}</li>
+        <li>Timestamp: {{ record.timestamp }}</li>
+        <li>Longitude: {{ record.coordinate_longitude }}</li>
+        <li>Latitude: {{ record.coordinate_latitude }}</li>
+        <li>Event: {{ record.event_description }}</li>
+        <li>Speed: {{ record.speed }}</li>
+        <li>Heading: {{ record.heading }}</li>
+        <li>Ignition: {{ record.ignitionState }}</li>
+        <li>GPS Accuracy: {{ record.gps_accuracy }}</li>
+        <li>GPS Fix Type: {{ record.gps_fix_type }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

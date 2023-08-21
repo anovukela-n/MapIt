@@ -38,25 +38,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Matching the original padding */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f2f2f2;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj_SaRIY-H1ubrSJWcnCTpgTq-aohr_5unPw&usqp=CAU'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
     min-height: 100vh;
     margin: 0;
+    color: black;
 }
 
-/* Common Styles */
 .container {
+    background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #ccc;
     padding: 20px;
-    background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     max-width: 400px;
-    width: 80%; /* Adjusted width for better proportion */
+    width: 80%;
     box-sizing: border-box;
     text-align: center;
-    margin-top: 20px; /* Added margin for spacing */
+    margin-top: 20px;
 }
 
 .container h2 {
@@ -65,7 +66,7 @@
 
 .container label {
     display: block;
-    margin-bottom: 10px; /* Adjusted margin */
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
@@ -92,6 +93,19 @@
 .container input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+/* Close Button Styles */
+#close-button {
+    position: fixed;
+    justify center: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
     </style>
 </head>
 
@@ -108,17 +122,28 @@
 </div>
 
 <div class="body-content">
+    
     {% block content %}
-    <h2><strong>Vehicle Tracking app</strong></h2>
+    <h1><strong>Vehicle Tracking app</strong></h2>
     <ul>
     <li><p>Note this site is still under construction</p></li>
     <li><p>Use the navigation bar to access functionality</p></li>
     <li><p>the map function will not have points if you don't start with the Load function</p></li>
+    </ul>
+    <button id="close-button">Close</button>
     {% endblock %}
    
     <footer>
         <p>&copy; 2023</p>
     </footer>
+    </div>
+
+<script>
+    document.getElementById('close-button').addEventListener('click', function() {
+        // Close the application by navigating to a blank page
+        window.location.href = 'about:blank';
+    });
+</script>
 </div>
 </body>
 </html>

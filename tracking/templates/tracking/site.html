@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracking Data Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+        
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .form-container h2 {
+            text-align: center;
+        }
+        
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        .form-container input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .form-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+<h2>Submit Tracking Data</h2>
+<form method="post" action="{% url 'create_record' %}">
+{% csrf_token %}
+
+        <h2>Submit Tracking Data</h2>
+        <label for="vehicleid">Vehicle ID:</label>
+        <input type="text" name="vehicleid" required><br>
+        
+        <label for="timestamp">Timestamp:</label>
+        <input type="datetime-local" name="timestamp" required><br>
+        
+        <label for="coordinate_longitude">Longitude:</label>
+        <input type="number" step="any" name="coordinate_longitude" required><br>
+        
+        <label for="coordinate_latitude">Latitude:</label>
+        <input type="number" step="any" name="coordinate_latitude" required><br>
+        
+        <label for="event_description">Event Description:</label>
+        <textarea name="event_description" required></textarea><br>
+        
+        <label for="speed">Speed:</label>
+        <input type="number" name="speed" required><br>
+        
+        <label for="heading">Heading:</label>
+        <input type="number" name="heading" required><br>
+        
+        <label for="ignitionState">Ignition State:</label>
+        <input type="text" name="ignitionState" required><br>
+        
+        <label for="gps_accuracy">GPS Accuracy:</label>
+        <input type="number" step="any" name="gps_accuracy" required><br>
+        
+        <label for="gps_fix_type">GPS Fix Type:</label>
+        <input type="text" name="gps_fix_type" required><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>{% block title %}{% endblock %}</title>
-    {% load static %}
-    <style>
-    /* Adapted Navbar Styles */
+/* Adapted Navbar Styles */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0056b3;
+    background-color:#0056b3;
     font-size: 1em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white;
@@ -92,33 +85,3 @@
 .container input[type="submit"]:hover {
     background-color: #0056b3;
 }
-    </style>
-</head>
-
-<body>
-<div class="navbar">
-    <a href="{% url 'home' %}" class="navbar-brand">Home</a>
-    <a href="{% url 'load' %}" class="navbar-item">Load</a>
-    <a href="{% url 'create_record' %}" class="navbar-item">Create</a>
-    <a href="{% url 'json' %}" class="navbar-item">Json</a>
-    <a href="{% url 'table' %}" class="navbar-item">Table</a>
-    <a href="{% url 'delete' id=record_id %}" class="navbar-item">Delete</a>
-    <a href="{% url 'update' id=record_id %}" class="navbar-item">Update</a>
-    <a href="{% url 'map' %}" class="navbar-item">map</a>
-</div>
-
-<div class="body-content">
-    {% block content %}
-    <h2><strong>Vehicle Tracking app</strong></h2>
-    <ul>
-    <li><p>Note this site is still under construction</p></li>
-    <li><p>Use the navigation bar to access functionality</p></li>
-    <li><p>the map function will not have points if you don't start with the Load function</p></li>
-    {% endblock %}
-   
-    <footer>
-        <p>&copy; 2023</p>
-    </footer>
-</div>
-</body>
-</html>

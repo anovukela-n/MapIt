@@ -16,45 +16,54 @@ from api_serializer.serializer import apiSerializer
 from django.template import loader
 
 def home(request):
-    return HttpResponse("Hello, Django!")
+    #records = TrackingData.objects.get(id=id)
+    context ={'record_id': 1}
+    return render(request, 'tracking/layout.html',context) 
 
 
 def load_csv_data(request):
     # Read data from CSV using pandas
-    csv_data = pd.read_csv('tracking/tests.csv')
-
+    try:
+        csv_data = pd.read_csv('tracking/tests.csv')
+        if isinstance(csv_data, pd.DataFrame):
+        
     # Loop through the CSV data and populate the database
-    for index, row in csv_data.iterrows():
-        vehicleid= row['vehicleid']
-        timestamp =row['timestamp']
-        coordinate_longitude=row['coordinate_longitude']
-        coordinate_latitude =row['coordinate_latitude']
-        event_description=row['event_description']
-        speed=row['speed']
-        heading=row['heading']
-        ignitionState=row['ignitionState']
-        gps_accuracy=row['gps_accuracy']
-        gps_fix_type=row['gps_fix_type']
+            for index, row in csv_data.iterrows():
+                    vehicleid= row['vehicleid']
+                    timestamp =row['timestamp']
+                    coordinate_longitude=row['coordinate_longitude']
+                    coordinate_latitude =row['coordinate_latitude']
+                    event_description=row['event_description']
+                    speed=row['speed']
+                    heading=row['heading']
+                    ignitionState=row['ignitionState']
+                    gps_accuracy=row['gps_accuracy']
+                    gps_fix_type=row['gps_fix_type']
 
-        TrackingData.objects.create(vehicleid=vehicleid, timestamp=timestamp,
-                                    coordinate_longitude=coordinate_longitude,
-                                    coordinate_latitude=coordinate_latitude,event_description=event_description,
-                                    speed=speed,heading=heading,ignitionState=ignitionState,
-                                    gps_accuracy=gps_accuracy,gps_fix_type=gps_fix_type)
+                    TrackingData.objects.create(vehicleid=vehicleid, timestamp=timestamp,
+                                                coordinate_longitude=coordinate_longitude,
+                                                coordinate_latitude=coordinate_latitude,event_description=event_description,
+                                                speed=speed,heading=heading,ignitionState=ignitionState,
+                                                gps_accuracy=gps_accuracy,gps_fix_type=gps_fix_type)
+            records = TrackingData.objects.all().values()
+            context = {
+                'records': records,
+            }
+            return render(request,'tracking/list_records.html', context)
+        else:
+            error_message = f"The file does not exist.You will be redirected to home page"
+            return render(request, 'tracking/ErrorToHome.html', {'error_message': error_message})
+        
+    except Exception as e:
+        error_message = f"You have the following exception: {str(e)}"
+        return render(request, 'tracking/ErrorToHome.html', {'error_message': error_message}) 
 
-    return JsonResponse({"message": "CSV data loaded successfully."})
 
-def hello_there(request, name):
-    print(request.build_absolute_uri()) #optional
-    return render(
-        request,
-        'tracking/hello_there.html',
-        {
-            'name': name,
-            'date': datetime.now()
-        }
-    )
-
+def getMap(request):
+    records=TrackingData.objects.all()
+    context = {"records":records}
+    return render(request,'map.html',context) 
+   
 #this function pulls the data from db as json and exposes it in browser
 @api_view(['GET'])
 def GetDataAsJson(request):
@@ -120,7 +129,7 @@ def create_record(request):
                                             gps_accuracy=gps_accuracy,gps_fix_type=gps_fix_type)
         return JsonResponse({"message": "trackingData created successfully."})
     #return JsonResponse({"message": "Invalid request."})#render form wwith inputs
-    return render(request, 'tracking/newRecord.html') 
+    return render(request, 'tracking/site.html') 
 
 def updateRecord(request, id):
     try:

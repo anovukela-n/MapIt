@@ -1,7 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tracking Data Form</title>
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tracking/newRecord.css' %}">
 </head>
 <body>
     <h2>Submit Tracking Data</h2>
