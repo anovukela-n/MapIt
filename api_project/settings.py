@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-6$a*go0$ith2l*^lpzs+hefsgva_@i%9wslm!vtkm-nec3#%hj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [" 0.0.0.0","127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1","localhost"," 0.0.0.0",]
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "tracking",
     "rest_framework",
-    'corsheaders',
+    "corsheaders",
     "django.contrib.staticfiles",
 ]
 
@@ -85,12 +85,14 @@ WSGI_APPLICATION = "api_project.wsgi.application"
 DATABASES = {
     "default": {
        
-        'ENGINE': 'django.db.backends.postgresql',
-        'POSTGRES_DB': 'Mapping',
-        'POSTGRES_USER': 'postgres',
-        'POSTGRES_PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "Mapping",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        "HOST": "db",
+        "PORT": "5432",
+
+       
     }
      }
 

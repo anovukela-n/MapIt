@@ -2,18 +2,30 @@ version: '3.9'
 
 services:
   db:
-    image: postgres
+    image: postgres:14.9
     environment:
-      POSTGRES_DB: Mapping
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 'password'
+      NAME: Mapping
+      USER: postgres
+      PASSWORD: password
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
 
   web:
     build: .
+    links:
+      - db
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
       - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=api_project.settings
+      - DATABASE_URL=postgres://postgres:password@db:5432/Mapping
     depends_on:
       - db
+ 
